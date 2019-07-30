@@ -1,5 +1,6 @@
 module CommonSolve
 
-greet() = print("Hello World!")
+function solve end
+function init end
 
 end # module
