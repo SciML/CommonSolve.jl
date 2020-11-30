@@ -1,5 +1,7 @@
 # CommonSolve
 
+[![Build Status](https://github.com/SciML/CommonSolve.jl/workflows/CI/badge.svg)](https://github.com/SciML/CommonSolve.jl/actions?query=workflow%3ACI)
+
 This holds the common `solve` command. The rules are that you must dispatch
 on one of your own types. That's it. No pirates.
 
