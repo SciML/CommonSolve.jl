@@ -1,6 +1,4 @@
-# CommonSolve
-
-[![Build Status](https://github.com/SciML/CommonSolve.jl/workflows/CI/badge.svg)](https://github.com/SciML/CommonSolve.jl/actions?query=workflow%3ACI)
+# CommonSolve.jl: The Common Solve Definition and Interface
 
 This holds the common `solve`, `init`, and `solve!` commands. By using the same definition,
 solver libraries from other completely different ecosystems can extend the functions and thus
@@ -32,3 +30,23 @@ _not_ define a method such as
 ```julia
 init(::AbstractVector, ::AlgorithmType)
 ```
+
+## API
+
+```@docs
+init
+solve
+solve!
+```
+
+## Contributing
+
+- Please refer to the
+  [SciML ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://github.com/SciML/ColPrac/blob/master/README.md)
+  for guidance on PRs, issues, and other matters relating to contributing to SciML.
+- There are a few community forums:
+    - The #diffeq-bridged and #sciml-bridged channels in the
+      [Julia Slack](https://julialang.org/slack/)
+    - [JuliaDiffEq](https://gitter.im/JuliaDiffEq/Lobby) on Gitter
+    - On the Julia Discourse forums (look for the [modelingtoolkit tag](https://discourse.julialang.org/tag/modelingtoolkit)
+    - See also [SciML Community page](https://sciml.ai/community/)
