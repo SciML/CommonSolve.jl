@@ -1,3 +1,1 @@
-pages = [
-        "The Common Solve Interface" => "index.md",
-]
+pages = ["The Common Solve Interface" => "index.md"]
