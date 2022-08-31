@@ -1,6 +1,14 @@
 # CommonSolve
 
+[![Join the chat at https://julialang.zulipchat.com #sciml-bridged](https://img.shields.io/static/v1?label=Zulip&message=chat&color=9558b2&labelColor=389826)](https://julialang.zulipchat.com/#narrow/stream/279055-sciml-bridged)
+[![Stable](https://img.shields.io/badge/docs-stable-blue.svg)](http://commonsolve.sciml.ai/stable/)
+[![Global Docs](https://img.shields.io/badge/docs-SciML-blue.svg)](https://docs.sciml.ai/dev/modules/CommonSolve/)
+
+[![codecov](https://codecov.io/gh/SciML/CommonSolve.jl/branch/master/graph/badge.svg)](https://codecov.io/gh/SciML/CommonSolve.jl)
 [![Build Status](https://github.com/SciML/CommonSolve.jl/workflows/CI/badge.svg)](https://github.com/SciML/CommonSolve.jl/actions?query=workflow%3ACI)
+
+[![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)
+[![SciML Code Style](https://img.shields.io/static/v1?label=code%20style&message=SciML&color=9558b2&labelColor=389826)](https://github.com/SciML/SciMLStyle)
 
 This holds the common `solve`, `init`, and `solve!` commands. By using the same definition,
 solver libraries from other completely different ecosystems can extend the functions and thus
