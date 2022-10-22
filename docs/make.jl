@@ -11,7 +11,7 @@ makedocs(
     format = Documenter.HTML(
         analytics = "UA-90474609-3",
         assets = ["assets/favicon.ico"],
-        canonical = "https://commonsolve.sciml.ai/stable/",
+        canonical = "https://docs.sciml.ai/CommonSolve/stable",
     ),
     pages = pages,
 )
