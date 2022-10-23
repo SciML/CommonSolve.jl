@@ -34,9 +34,9 @@ init(::AbstractVector, ::AlgorithmType)
 ## API
 
 ```@docs
-init
-solve
-solve!
+CommonSolve.init
+CommonSolve.solve
+CommonSolve.solve!
 ```
 
 ## Contributing
