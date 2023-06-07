@@ -28,6 +28,7 @@ In many cases, the `SolverType` is an object that is iteratively progressed to a
 
 ```julia
 step!(::SolverType, args...; kwargs...)
+```
 
 To avoid method ambiguity, the first argument of `solve`, `solve!`, `step!`, and `init`
 _must_ be dispatched on the type defined in your package.  For example, do
