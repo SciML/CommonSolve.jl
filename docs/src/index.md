@@ -1,8 +1,8 @@
 # CommonSolve.jl: The Common Solve Definition and Interface
 
-This holds the common `solve`, `init`, and `solve!` commands. By using the same definition,
+This holds the common `solve`, `init`, `solve!`, and `step!` commands. By using the same definition,
 solver libraries from other completely different ecosystems can extend the functions and thus
-not clash with SciML if both ecosystems export the `solve` command. The rules are that 
+not clash with SciML if both ecosystems export the `solve` command. The rules are that
 you must dispatch on one of your own types. That's it. No pirates.
 
 ## General recommendation
@@ -21,9 +21,16 @@ solve!(::SolverType) :: SolutionType
 ```
 
 where `ProblemType`, `SolverType`, and `SolutionType` are the types defined in
-your package.
+your package. 
 
-To avoid method ambiguity, the first argument of `solve`, `solve!`, and `init`
+In many cases, the `SolverType` is an object that is iteratively progressed to achieve the solution. In such cases, the `step!` function can be used:
+
+
+```julia
+step!(::SolverType, args...; kwargs...)
+```
+
+To avoid method ambiguity, the first argument of `solve`, `solve!`, `step!`, and `init`
 _must_ be dispatched on the type defined in your package.  For example, do
 _not_ define a method such as
 
@@ -37,6 +44,7 @@ init(::AbstractVector, ::AlgorithmType)
 CommonSolve.init
 CommonSolve.solve
 CommonSolve.solve!
+CommonSolve.step!
 ```
 
 ## Contributing
@@ -83,7 +91,7 @@ Pkg.status(;mode = PKGMODE_MANIFEST) # hide
 </details>
 ```
 ```@raw html
-You can also download the 
+You can also download the
 <a href="
 ```
 ```@eval
