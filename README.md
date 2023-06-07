@@ -9,7 +9,7 @@
 [![ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://img.shields.io/badge/ColPrac-Contributor's%20Guide-blueviolet)](https://github.com/SciML/ColPrac)
 [![SciML Code Style](https://img.shields.io/static/v1?label=code%20style&message=SciML&color=9558b2&labelColor=389826)](https://github.com/SciML/SciMLStyle)
 
-This holds the common `solve`, `init`, and `solve!` commands. By using the same definition,
+This holds the common `solve`, `init`, `step!`, and `solve!` commands. By using the same definition,
 solver libraries from other completely different ecosystems can extend the functions and thus
 not clash with SciML if both ecosystems export the `solve` command. The rules are that 
 you must dispatch on one of your own types. That's it. No pirates.
