@@ -30,9 +30,16 @@ solve!(::SolverType) :: SolutionType
 ```
 
 where `ProblemType`, `SolverType`, and `SolutionType` are the types defined in
-your package.
+your package. 
 
-To avoid method ambiguity, the first argument of `solve`, `solve!`, and `init`
+In many cases, the `SolverType` is an object that is iteratively progressed to achieve the solution. 
+In such cases, the `step!` function can be used:
+
+```julia
+step!(::SolverType, args...; kwargs...)
+```
+
+To avoid method ambiguity, the first argument of `solve`, `solve!`, `step!`, and `init`
 _must_ be dispatched on the type defined in your package.  For example, do
 _not_ define a method such as
 
