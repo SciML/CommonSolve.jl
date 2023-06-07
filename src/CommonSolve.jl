@@ -60,7 +60,7 @@ function init end
 
 """
 ```julia
-step!(iter, ...)
+CommonSolve.step!(iter, args...; kwargs...)
 ```
 
 Progress the iterator object (the one returned by `CommonSolve.init`).
