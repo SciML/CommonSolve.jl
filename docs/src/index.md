@@ -1,9 +1,18 @@
 # CommonSolve.jl: The Common Solve Definition and Interface
 
 This holds the common `solve`, `init`, `solve!`, and `step!` commands. By using the same definition,
-solver libraries from other completely different ecosystems can extend the functions and thus
+solver libraries from entirely different ecosystems can extend the functions and thus
 not clash with SciML if both ecosystems export the `solve` command. The rules are that
 you must dispatch on one of your own types. That's it. No pirates.
+
+## Installation
+
+To install CommonSolve.jl, use the Julia package manager:
+
+```julia
+using Pkg
+Pkg.add("CommonSolve")
+```
 
 ## General recommendation
 
@@ -49,15 +58,19 @@ CommonSolve.step!
 
 ## Contributing
 
-- Please refer to the
-  [SciML ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://github.com/SciML/ColPrac/blob/master/README.md)
-  for guidance on PRs, issues, and other matters relating to contributing to SciML.
-- There are a few community forums:
-    - The #diffeq-bridged and #sciml-bridged channels in the
-      [Julia Slack](https://julialang.org/slack/)
-    - [JuliaDiffEq](https://gitter.im/JuliaDiffEq/Lobby) on Gitter
-    - On the Julia Discourse forums (look for the [modelingtoolkit tag](https://discourse.julialang.org/tag/modelingtoolkit)
-    - See also [SciML Community page](https://sciml.ai/community/)
+  - Please refer to the
+    [SciML ColPrac: Contributor's Guide on Collaborative Practices for Community Packages](https://github.com/SciML/ColPrac/blob/master/README.md)
+    for guidance on PRs, issues, and other matters relating to contributing to SciML.
+
+  - See the [SciML Style Guide](https://github.com/SciML/SciMLStyle) for common coding practices and other style decisions.
+  - There are a few community forums:
+    
+      + The #diffeq-bridged and #sciml-bridged channels in the
+        [Julia Slack](https://julialang.org/slack/)
+      + The #diffeq-bridged and #sciml-bridged channels in the
+        [Julia Zulip](https://julialang.zulipchat.com/#narrow/stream/279055-sciml-bridged)
+      + On the [Julia Discourse forums](https://discourse.julialang.org)
+      + See also [SciML Community page](https://sciml.ai/community/)
 
 ## Reproducibility
 ```@raw html
@@ -90,26 +103,19 @@ Pkg.status(;mode = PKGMODE_MANIFEST) # hide
 ```@raw html
 </details>
 ```
-```@raw html
-You can also download the
-<a href="
-```
 ```@eval
 using TOML
-version = TOML.parse(read("../../Project.toml",String))["version"]
-name = TOML.parse(read("../../Project.toml",String))["name"]
-link = "https://github.com/SciML/"*name*".jl/tree/gh-pages/v"*version*"/assets/Manifest.toml"
-```
-```@raw html
-">manifest</a> file and the
-<a href="
-```
-```@eval
-using TOML
-version = TOML.parse(read("../../Project.toml",String))["version"]
-name = TOML.parse(read("../../Project.toml",String))["name"]
-link = "https://github.com/SciML/"*name*".jl/tree/gh-pages/v"*version*"/assets/Project.toml"
-```
-```@raw html
-">project</a> file.
+using Markdown
+version = TOML.parse(read("../../Project.toml", String))["version"]
+name = TOML.parse(read("../../Project.toml", String))["name"]
+link_manifest = "https://github.com/SciML/" * name * ".jl/tree/gh-pages/v" * version *
+                "/assets/Manifest.toml"
+link_project = "https://github.com/SciML/" * name * ".jl/tree/gh-pages/v" * version *
+               "/assets/Project.toml"
+Markdown.parse("""You can also download the
+[manifest]($link_manifest)
+file and the
+[project]($link_project)
+file.
+""")
 ```
