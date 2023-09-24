@@ -27,7 +27,7 @@ uuid = "2a0f44e3-6c83-55bd-87e4-b1978d98bd5f"
 [[deps.CommonSolve]]
 path = "/home/runner/work/CommonSolve.jl/CommonSolve.jl"
 uuid = "38540f10-b2f7-11e9-35d8-d573e4eb0ff2"
-version = "0.2.4"
+version = "0.2.5"
 
 [[deps.Dates]]
 deps = ["Printf"]
