@@ -9,10 +9,8 @@ makedocs(
     sitename = "CommonSolve.jl",
     authors = "Chris Rackauckas",
     modules = [CommonSolve],
-    clean = true,
-    doctest = false,
+    clean = true, doctest = false, linkcheck = true,
     format = Documenter.HTML(
-        analytics = "UA-90474609-3",
         assets = ["assets/favicon.ico"],
         canonical = "https://docs.sciml.ai/CommonSolve/stable",
     ),
