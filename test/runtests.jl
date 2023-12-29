@@ -1,6 +1,3 @@
-using CommonSolve
-using Test
+using SafeTestsets
 
-@testset "CommonSolve.jl" begin
-    # Write your own tests here.
-end
+@time @safetestset "Quality Assurance" begin include("qa.jl") end
