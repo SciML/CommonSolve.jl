@@ -1,31 +1,49 @@
 name: IntegrationTest
 on:
-  push:
-    branches: [main]
-    tags: [v*]
   pull_request:
+    branches:
+      - master
+    paths-ignore:
+      - 'docs/**'
+  push:
+    branches:
+      - master
+    tags:
+      - v*
+    paths-ignore:
+      - 'docs/**'
+  schedule:
+    - cron: '1 4 * * 4'
+
 
 jobs:
   test:
-    name: ${{ matrix.package.repo }}/${{ matrix.package.group }}/${{ matrix.julia-version }}
+    name: ${{ matrix.package.repo }}/${{ matrix.package.group }}/${{ matrix.version }}
     runs-on: ${{ matrix.os }}
     env:
       GROUP: ${{ matrix.package.group }}
     strategy:
       matrix:
-        julia-version: [1]
-        os: [ubuntu-latest]
         package:
           - {user: SciML, repo: OrdinaryDiffEq.jl, group: InterfaceI}
           - {user: SciML, repo: SciMLBase.jl, group: Core}
           - {user: SciML, repo: DiffEqBase.jl, group: Core}
+        version:
+          - '1'
+        os:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
 
     steps:
       - uses: actions/checkout@v4
       - uses: julia-actions/setup-julia@v1
         with:
-          version: ${{ matrix.julia-version }}
+          version: ${{ matrix.version }}
           arch: x64
+      - uses: julia-actions/cache@v1
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: julia-actions/julia-buildpkg@latest
       - name: Clone Downstream
         uses: actions/checkout@v4
@@ -33,7 +51,7 @@ jobs:
           repository: ${{ matrix.package.user }}/${{ matrix.package.repo }}
           path: downstream
       - name: Load this and run the downstream tests
-        shell: julia --color=yes --project=downstream {0}
+        shell: julia --color=yes --depwarn=error --project=downstream {0}
         run: |
           using Pkg
           try
