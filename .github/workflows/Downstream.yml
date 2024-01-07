@@ -23,6 +23,7 @@ jobs:
     env:
       GROUP: ${{ matrix.package.group }}
     strategy:
+      fail-fast: false
       matrix:
         package:
           - {user: SciML, repo: OrdinaryDiffEq.jl, group: InterfaceI}
