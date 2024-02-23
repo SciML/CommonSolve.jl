@@ -9,7 +9,7 @@ Solves an equation or other mathematical problem using the algorithm
 specified in the arguments. Generally, the interface is:
 
 ```julia
-CommonSolve.solve(prob::ProblemType,alg::SolverType; kwargs...)::SolutionType
+CommonSolve.solve(prob::ProblemType, alg::SolverType; kwargs...)::SolutionType
 ```
 
 where the keyword arguments are uniform across all choices of algorithms.
@@ -31,7 +31,7 @@ Solves an equation or other mathematical problem using the algorithm
 specified in the arguments. Generally, the interface is:
 
 ```julia
-iter = CommonSolve.init(prob::ProblemType,alg::SolverType; kwargs...)::IterType
+iter = CommonSolve.init(prob::ProblemType, alg::SolverType; kwargs...)::IterType
 CommonSolve.solve!(iter)::SolutionType
 ```
 
@@ -49,7 +49,7 @@ Solves an equation or other mathematical problem using the algorithm
 specified in the arguments. Generally, the interface is:
 
 ```julia
-iter = CommonSolve.init(prob::ProblemType,alg::SolverType; kwargs...)::IterType
+iter = CommonSolve.init(prob::ProblemType, alg::SolverType; kwargs...)::IterType
 CommonSolve.solve!(iter)::SolutionType
 ```
 
