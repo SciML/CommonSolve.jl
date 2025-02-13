@@ -28,9 +28,9 @@ version = "1.11.0"
 
 [[deps.CodecZlib]]
 deps = ["TranscodingStreams", "Zlib_jll"]
-git-tree-sha1 = "bce6804e5e6044c6daab27bb533d1295e4a2e759"
+git-tree-sha1 = "545a177179195e442472a1c4dc86982aa7a1bef0"
 uuid = "944b1d66-785c-5afd-91f1-9de20f533193"
-version = "0.7.6"
+version = "0.7.7"
 
 [[deps.CommonSolve]]
 path = "/home/runner/work/CommonSolve.jl/CommonSolve.jl"
@@ -61,9 +61,9 @@ version = "1.6.0"
 
 [[deps.Expat_jll]]
 deps = ["Artifacts", "JLLWrappers", "Libdl"]
-git-tree-sha1 = "e51db81749b0777b2147fbe7b783ee79045b8e99"
+git-tree-sha1 = "d55dffd9ae73ff72f1c0482454dcf2ec6c6c4a63"
 uuid = "2e619515-83b5-522b-bb60-26c02a35a201"
-version = "2.6.4+3"
+version = "2.6.5+0"
 
 [[deps.FileWatching]]
 uuid = "7b1f6079-737a-58dc-b8bc-7a2ca5c1b5ee"
