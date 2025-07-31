@@ -12,9 +12,9 @@ makedocs(
     clean = true, doctest = false, linkcheck = true,
     format = Documenter.HTML(
         assets = ["assets/favicon.ico"],
-        canonical = "https://docs.sciml.ai/CommonSolve/stable"
+        canonical = "https://docs.sciml.ai/CommonSolve/stable",
     ),
-    pages = pages
+    pages = pages,
 )
 
 deploydocs(repo = "github.com/SciML/CommonSolve.jl.git"; push_preview = true)

@@ -25,14 +25,15 @@ solve(args...; kwargs...) = solve!(init(args...; kwargs...))
 So, we recommend defining
 
 ```julia
-init(::ProblemType, args...; kwargs...)::SolverType
-solve!(::SolverType)::SolutionType
+init(::ProblemType, args...; kwargs...) :: SolverType
+solve!(::SolverType) :: SolutionType
 ```
 
 where `ProblemType`, `SolverType`, and `SolutionType` are the types defined in
-your package.
+your package. 
 
 In many cases, the `SolverType` is an object that is iteratively progressed to achieve the solution. In such cases, the `step!` function can be used:
+
 
 ```julia
 step!(::SolverType, args...; kwargs...)
@@ -72,46 +73,36 @@ CommonSolve.step!
       + See also [SciML Community page](https://sciml.ai/community/)
 
 ## Reproducibility
-
 ```@raw html
 <details><summary>The documentation of this SciML package was built using these direct dependencies,</summary>
 ```
-
 ```@example
 using Pkg # hide
 Pkg.status() # hide
 ```
-
 ```@raw html
 </details>
 ```
-
 ```@raw html
 <details><summary>and using this machine and Julia version.</summary>
 ```
-
 ```@example
 using InteractiveUtils # hide
 versioninfo() # hide
 ```
-
 ```@raw html
 </details>
 ```
-
 ```@raw html
 <details><summary>A more complete overview of all dependencies and their versions is also provided.</summary>
 ```
-
 ```@example
 using Pkg # hide
-Pkg.status(; mode = PKGMODE_MANIFEST) # hide
+Pkg.status(;mode = PKGMODE_MANIFEST) # hide
 ```
-
 ```@raw html
 </details>
 ```
-
 ```@eval
 using TOML
 using Markdown
