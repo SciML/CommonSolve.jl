@@ -45,8 +45,8 @@ function solve! end
 iter = CommonSolve.init(args...; kwargs...)
 ```
 
-Creates an iterator or cache object to hold a problem `prob` and a solver `sol`
-to be passed to `solve!` or `step!`. Generally, the interface is:
+Creates an iterator or cache object to hold a problem `prob` and a solver algorithm
+`alg` to be passed to `solve!` or `step!`. Generally, the interface is:
 
 ```julia
 iter = CommonSolve.init(prob::ProblemType, alg::SolverType; kwargs...)::IterType
