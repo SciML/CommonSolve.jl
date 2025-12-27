@@ -45,8 +45,8 @@ function solve! end
 iter = CommonSolve.init(args...; kwargs...)
 ```
 
-Solves an equation or other mathematical problem using the algorithm
-specified in the arguments. Generally, the interface is:
+Creates an iterator or cache object to hold a problem `prob` and a solver `sol`
+to be passed to `solve!` or `step!`. Generally, the interface is:
 
 ```julia
 iter = CommonSolve.init(prob::ProblemType, alg::SolverType; kwargs...)::IterType
@@ -55,6 +55,9 @@ CommonSolve.solve!(iter)::SolutionType
 
 where the keyword arguments are uniform across all choices of algorithms.
 The `iter` type will be different for the different problem types.
+
+The object returned by `init` allows more direct control over the internal solving
+process, and users shouldn't generally need to handle it.
 """
 function init end
 
