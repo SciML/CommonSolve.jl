@@ -1,7 +1,7 @@
 name = "CommonSolve"
 uuid = "38540f10-b2f7-11e9-35d8-d573e4eb0ff2"
 authors = ["Chris Rackauckas <accounts@chrisrackauckas.com>"]
-version = "0.2.6"
+version = "0.2.5"
 
 [compat]
 Aqua = "0.8"
