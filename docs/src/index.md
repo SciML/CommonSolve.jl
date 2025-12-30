@@ -32,19 +32,24 @@ solve!(::SolverType)::SolutionType
 where `ProblemType`, `SolverType`, and `SolutionType` are the types defined in
 your package.
 
-In many cases, the `SolverType` is an object that is iteratively progressed to achieve the solution. In such cases, the `step!` function can be used:
+In many cases, the `SolverType` is an object that is iteratively progressed to achieve the solution.
+In such cases, the `step!` function can be used:
 
 ```julia
 step!(::SolverType, args...; kwargs...)
 ```
 
 To avoid method ambiguity, the first argument of `solve`, `solve!`, `step!`, and `init`
-_must_ be dispatched on the type defined in your package.  For example, do
+_must_ be dispatched on a type defined in your package. For example, do
 _not_ define a method such as
 
 ```julia
 init(::AbstractVector, ::AlgorithmType)
 ```
+
+where `AlgorithmType` is your type but `AbstractVector` is not. Instead, either the
+problem or the algorithm type must be defined in your package to avoid type piracy and
+method ambiguities with other packages.
 
 ## API
 
