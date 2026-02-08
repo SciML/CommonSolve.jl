@@ -8,7 +8,7 @@ using CommonSolve, JET
     # We verify that:
     # 1. The only reports are the expected "no matching method" for init
     # 2. No other static analysis issues exist
-    rep = JET.report_package("CommonSolve")
+    rep = JET.report_package(CommonSolve)
     reports = JET.get_reports(rep)
 
     # Filter to find unexpected reports (not related to the expected init stub)
