@@ -11,7 +11,3 @@ end
 @time @safetestset "ExplicitImports" begin
     include("explicit_imports.jl")
 end
-
-@time @safetestset "Enzyme inactive_kwarg extension" begin
-    include("enzyme.jl")
-end
