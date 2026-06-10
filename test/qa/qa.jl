@@ -1,4 +1,15 @@
-using CommonSolve, JET
+using CommonSolve, Aqua, JET, ExplicitImports, Test
+
+@testset "Aqua" begin
+    Aqua.find_persistent_tasks_deps(CommonSolve)
+    Aqua.test_ambiguities(CommonSolve, recursive = false)
+    Aqua.test_deps_compat(CommonSolve)
+    Aqua.test_piracies(CommonSolve)
+    Aqua.test_project_extras(CommonSolve)
+    Aqua.test_stale_deps(CommonSolve)
+    Aqua.test_unbound_args(CommonSolve)
+    Aqua.test_undefined_exports(CommonSolve)
+end
 
 @testset "JET static analysis" begin
     # CommonSolve is an interface package with function stubs (init, solve!, step!)
@@ -19,4 +30,9 @@ using CommonSolve, JET
     end
 
     @test isempty(unexpected)
+end
+
+@testset "ExplicitImports" begin
+    @test check_no_implicit_imports(CommonSolve) === nothing
+    @test check_no_stale_explicit_imports(CommonSolve) === nothing
 end
