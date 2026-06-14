@@ -1,5 +1,6 @@
 using Pkg
 using CommonSolve
+using SafeTestsets
 using Test
 
 const GROUP = get(ENV, "GROUP", "All")
@@ -15,7 +16,8 @@ function activate_qa_env()
 end
 
 if GROUP == "All" || GROUP == "Core"
-    @testset "CommonSolve.jl" begin
+    @safetestset "CommonSolve.jl" begin
+        using CommonSolve
         # CommonSolve is a pure interface package: it defines the function stubs
         # `solve`, `solve!`, `init`, and `step!`. There is no behavior to exercise
         # beyond confirming the package loads and the stubs are defined.

@@ -1,6 +1,7 @@
-using CommonSolve, Aqua, JET, ExplicitImports, Test
+using SafeTestsets
 
-@testset "Aqua" begin
+@safetestset "Aqua" begin
+    using CommonSolve, Aqua
     Aqua.find_persistent_tasks_deps(CommonSolve)
     Aqua.test_ambiguities(CommonSolve, recursive = false)
     Aqua.test_deps_compat(CommonSolve)
@@ -11,7 +12,8 @@ using CommonSolve, Aqua, JET, ExplicitImports, Test
     Aqua.test_undefined_exports(CommonSolve)
 end
 
-@testset "JET static analysis" begin
+@safetestset "JET static analysis" begin
+    using CommonSolve, JET
     # CommonSolve is an interface package with function stubs (init, solve!, step!)
     # The default solve(args...) = solve!(init(args...)) will report "no matching method"
     # because init has no methods - this is expected for an interface package.
@@ -32,7 +34,8 @@ end
     @test isempty(unexpected)
 end
 
-@testset "ExplicitImports" begin
+@safetestset "ExplicitImports" begin
+    using CommonSolve, ExplicitImports
     @test check_no_implicit_imports(CommonSolve) === nothing
     @test check_no_stale_explicit_imports(CommonSolve) === nothing
 end
