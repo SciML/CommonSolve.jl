@@ -72,4 +72,15 @@ the iterator for, and are implementation-specific.
 """
 function step! end
 
+# `solve`, `solve!`, `init`, `step!` are CommonSolve's entire public API — each is
+# documented above and is the canonical interface downstream solvers import and
+# extend. They are intentionally NOT exported (to avoid `using`-scope clashes with
+# the many packages that define their own `solve`/`init`/...), so mark them
+# `public` so tooling (ExplicitImports) and users recognize them as API.
+# `eval(Expr(:public, ...))` keeps this file parsing on the pre-1.11 floor where
+# the `public` keyword does not yet exist.
+@static if VERSION >= v"1.11.0-DEV.469"
+    eval(Expr(:public, :solve, :solve!, :init, :step!))
+end
+
 end # module
