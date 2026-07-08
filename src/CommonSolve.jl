@@ -5,19 +5,37 @@ module CommonSolve
 CommonSolve.solve(args...; kwargs...)
 ```
 
-Solves an equation or other mathematical problem using the algorithm
-specified in the arguments. Generally, the interface is:
+Solve an equation or other mathematical problem using the algorithm specified
+in the arguments. Generally, downstream packages extend:
 
 ```julia
 CommonSolve.solve(prob::ProblemType, alg::SolverType; kwargs...)::SolutionType
 ```
 
-where the keyword arguments are uniform across all choices of algorithms.
-
-By default, `solve` defaults to using `solve!` on the iterator form, i.e.:
+If a package only defines the iterator interface, `solve` falls back to:
 
 ```julia
 solve(args...; kwargs...) = solve!(init(args...; kwargs...))
+```
+
+## Arguments
+
+  - `args...`: Problem, algorithm, and implementation-specific positional arguments.
+  - `kwargs...`: Implementation-specific solver options.
+
+## Returns
+
+The solution object defined by the downstream solver implementation.
+
+## Example
+
+```julia
+struct MyProblem end
+struct MyAlg end
+
+CommonSolve.solve(::MyProblem, ::MyAlg; kwargs...) = :solution
+
+CommonSolve.solve(MyProblem(), MyAlg())
 ```
 """
 solve(args...; kwargs...) = solve!(init(args...; kwargs...))
@@ -27,16 +45,31 @@ solve(args...; kwargs...) = solve!(init(args...; kwargs...))
 CommonSolve.solve!(iter)
 ```
 
-Solves an equation or other mathematical problem using the algorithm
-specified in the arguments. Generally, the interface is:
+Complete the solve using an iterator or cache object created by
+[`CommonSolve.init`](@ref). Generally, downstream packages extend:
 
 ```julia
 iter = CommonSolve.init(prob::ProblemType, alg::SolverType; kwargs...)::IterType
 CommonSolve.solve!(iter)::SolutionType
 ```
 
-where the keyword arguments are uniform across all choices of algorithms.
-The `iter` type will be different for the different problem types.
+## Arguments
+
+  - `iter`: Solver state returned by `CommonSolve.init`.
+
+## Returns
+
+The solution object defined by the downstream solver implementation.
+
+## Example
+
+```julia
+struct MyIterator end
+
+CommonSolve.solve!(::MyIterator) = :solution
+
+CommonSolve.solve!(MyIterator())
+```
 """
 function solve! end
 
@@ -45,19 +78,35 @@ function solve! end
 iter = CommonSolve.init(args...; kwargs...)
 ```
 
-Creates an iterator or cache object to hold a problem `prob` and a solver algorithm
-`alg` to be passed to `solve!` or `step!`. Generally, the interface is:
+Create an iterator or cache object that can be passed to
+[`CommonSolve.solve!`](@ref) or [`CommonSolve.step!`](@ref). Generally,
+downstream packages extend:
 
 ```julia
 iter = CommonSolve.init(prob::ProblemType, alg::SolverType; kwargs...)::IterType
 CommonSolve.solve!(iter)::SolutionType
 ```
 
-where the keyword arguments are uniform across all choices of algorithms.
-The `iter` type will be different for the different problem types.
+## Arguments
 
-The object returned by `init` allows more direct control over the internal solving
-process, and users shouldn't generally need to handle it.
+  - `args...`: Problem, algorithm, and implementation-specific positional arguments.
+  - `kwargs...`: Implementation-specific solver options.
+
+## Returns
+
+An implementation-defined iterator or cache object that stores solver state.
+
+## Example
+
+```julia
+struct MyProblem end
+struct MyAlg end
+struct MyIterator end
+
+CommonSolve.init(::MyProblem, ::MyAlg; kwargs...) = MyIterator()
+
+iter = CommonSolve.init(MyProblem(), MyAlg())
+```
 """
 function init end
 
@@ -66,9 +115,35 @@ function init end
 CommonSolve.step!(iter, args...; kwargs...)
 ```
 
-Progress the iterator object (the one returned by `CommonSolve.init`).
-The additional arguments typically describe how much to progress
-the iterator for, and are implementation-specific.
+Progress an iterator or cache object returned by [`CommonSolve.init`](@ref).
+The additional arguments typically describe how far to advance the solve and
+are implementation-specific.
+
+## Arguments
+
+  - `iter`: Solver state returned by `CommonSolve.init`.
+  - `args...`: Implementation-specific step controls.
+  - `kwargs...`: Implementation-specific step options.
+
+## Returns
+
+An implementation-defined value, commonly the updated iterator, a step result,
+or `nothing`.
+
+## Example
+
+```julia
+mutable struct MyIterator
+    steps::Int
+end
+
+function CommonSolve.step!(iter::MyIterator)
+    iter.steps += 1
+    return iter
+end
+
+iter = CommonSolve.step!(MyIterator(0))
+```
 """
 function step! end
 
