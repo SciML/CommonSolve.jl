@@ -9,4 +9,16 @@ using Test
     @test isdefined(CommonSolve, :solve!)
     @test isdefined(CommonSolve, :init)
     @test isdefined(CommonSolve, :step!)
+
+    public_api = (:solve, :solve!, :init, :step!)
+    for name in public_api
+        binding = Base.Docs.Binding(CommonSolve, name)
+        @test haskey(Base.Docs.meta(CommonSolve), binding)
+    end
+
+    @static if VERSION >= v"1.11.0-DEV.469"
+        for name in public_api
+            @test Base.ispublic(CommonSolve, name)
+        end
+    end
 end
