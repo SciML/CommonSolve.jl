@@ -1,3 +1,33 @@
+"""
+```julia
+module CommonSolve
+```
+
+Defines the shared solver interface functions used by solver packages that need
+common names without exporting them into downstream user namespaces. The public
+API is the set of generic functions [`CommonSolve.solve`](@ref),
+[`CommonSolve.solve!`](@ref), [`CommonSolve.init`](@ref), and
+[`CommonSolve.step!`](@ref).
+
+## Interface
+
+Downstream packages extend these functions on problem, algorithm, iterator, or
+cache types that they own. This keeps independent solver ecosystems compatible
+without introducing type piracy or method ambiguities.
+
+## Example
+
+```julia
+using CommonSolve
+
+struct MyProblem end
+struct MyAlg end
+
+CommonSolve.solve(::MyProblem, ::MyAlg) = :solution
+
+CommonSolve.solve(MyProblem(), MyAlg())
+```
+"""
 module CommonSolve
 
 """
