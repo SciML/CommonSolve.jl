@@ -1,8 +1,3 @@
-using Pkg
-
-Pkg.develop(PackageSpec(path = dirname(@__DIR__)))
-Pkg.instantiate()
-
 using Documenter, CommonSolve
 
 cp("./docs/Manifest.toml", "./docs/src/assets/Manifest.toml", force = true)
