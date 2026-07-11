@@ -5,7 +5,7 @@ version = "0.2.10"
 
 [compat]
 SafeTestsets = "0.1"
-SciMLTesting = "1"
+SciMLTesting = "2.1"
 Test = "1"
 julia = "1.10"
 
