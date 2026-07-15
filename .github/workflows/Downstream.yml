@@ -22,9 +22,9 @@ jobs:
       fail-fast: false
       matrix:
         package:
-          - {user: SciML, repo: OrdinaryDiffEq.jl, group: InterfaceI}
-          - {user: SciML, repo: SciMLBase.jl, group: Core}
-          - {user: SciML, repo: DiffEqBase.jl, group: Core}
+          - {user: SciML, repo: OrdinaryDiffEq.jl, subdir: "", group: InterfaceI}
+          - {user: SciML, repo: SciMLBase.jl, subdir: "", group: Core}
+          - {user: SciML, repo: OrdinaryDiffEq.jl, subdir: lib/DiffEqBase, group: Core}
         os:
           - ubuntu-latest
           - macos-latest
@@ -34,6 +34,7 @@ jobs:
       julia-version: "1"
       owner: "${{ matrix.package.user }}"
       repo: "${{ matrix.package.repo }}"
+      subdir: "${{ matrix.package.subdir }}"
       group: "${{ matrix.package.group }}"
       os: "${{ matrix.os }}"
     secrets: "inherit"
