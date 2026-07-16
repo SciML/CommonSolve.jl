@@ -24,7 +24,6 @@ jobs:
         package:
           - {user: SciML, repo: OrdinaryDiffEq.jl, group: InterfaceI}
           - {user: SciML, repo: SciMLBase.jl, group: Core}
-          - {user: SciML, repo: DiffEqBase.jl, group: Core}
         os:
           - ubuntu-latest
           - macos-latest
