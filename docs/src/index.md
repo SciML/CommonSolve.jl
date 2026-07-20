@@ -39,17 +39,17 @@ In such cases, the `step!` function can be used:
 step!(::SolverType, args...; kwargs...)
 ```
 
-To avoid method ambiguity, the first argument of `solve`, `solve!`, `step!`, and `init`
-_must_ be dispatched on a type defined in your package. For example, do
-_not_ define a method such as
+To avoid type piracy and method ambiguity, the first argument of `solve`, `solve!`, `step!`,
+and `init` _must_ be dispatched on a type defined in your package. For example, do _not_
+define a method such as
 
 ```julia
 init(::AbstractVector, ::AlgorithmType)
 ```
 
-where `AlgorithmType` is your type but `AbstractVector` is not. Instead, either the
-problem or the algorithm type must be defined in your package to avoid type piracy and
-method ambiguities with other packages.
+where `AlgorithmType` is your type but `AbstractVector` is not. The first argument must be
+your problem or iterator type; placing an owned algorithm type in a later argument is not
+sufficient.
 
 ## API
 
