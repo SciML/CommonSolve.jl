@@ -3,28 +3,28 @@ using Test
 
 module GenericSolverInterfaceTest
 
-using CommonSolve
+    using CommonSolve
 
-struct Problem
-    initial_value::Int
-end
+    struct Problem
+        initial_value::Int
+    end
 
-struct IterativeAlgorithm end
-struct DirectAlgorithm end
+    struct IterativeAlgorithm end
+    struct DirectAlgorithm end
 
-mutable struct Iterator
-    value::Int
-end
+    mutable struct Iterator
+        value::Int
+    end
 
-CommonSolve.init(problem::Problem, ::IterativeAlgorithm; offset = 0) =
-    Iterator(problem.initial_value + offset)
-CommonSolve.solve!(iter::Iterator) = iter.value
-function CommonSolve.step!(iter::Iterator; increment = 1)
-    iter.value += increment
-    return iter
-end
-CommonSolve.solve(problem::Problem, ::DirectAlgorithm; offset = 0) =
-    problem.initial_value + offset
+    CommonSolve.init(problem::Problem, ::IterativeAlgorithm; offset = 0) =
+        Iterator(problem.initial_value + offset)
+    CommonSolve.solve!(iter::Iterator) = iter.value
+    function CommonSolve.step!(iter::Iterator; increment = 1)
+        iter.value += increment
+        return iter
+    end
+    CommonSolve.solve(problem::Problem, ::DirectAlgorithm; offset = 0) =
+        problem.initial_value + offset
 
 end
 
