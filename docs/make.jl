@@ -15,6 +15,8 @@ makedocs(
     authors = "Chris Rackauckas",
     modules = [CommonSolve],
     clean = true, linkcheck = true,
+    doctest = true,
+    checkdocs = :exports,
     format = Documenter.HTML(
         assets = ["assets/favicon.ico"],
         canonical = "https://docs.sciml.ai/CommonSolve/stable"
