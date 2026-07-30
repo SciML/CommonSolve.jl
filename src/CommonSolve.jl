@@ -167,7 +167,7 @@ are implementation-specific.
 
 - `iter`: Solver state returned by `CommonSolve.init`. Its type must be owned by the
   package extending `step!`.
-  - `args...`: Implementation-specific step controls.
+- `args...`: Implementation-specific step controls.
 
 # Keywords
 
