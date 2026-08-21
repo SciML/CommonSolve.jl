@@ -30,6 +30,8 @@ CommonSolve.solve(MyProblem(), MyAlg())
 """
 module CommonSolve
 
+using PrecompileTools: @compile_workload
+
 """
 ```julia
 CommonSolve.solve(args...; kwargs...) -> solution
@@ -194,6 +196,24 @@ iter = CommonSolve.step!(MyIterator(0))
 ```
 """
 function step! end
+
+# Private fixtures exercise the fallback without modeling a downstream solver.
+struct _PrecompileProblem end
+struct _PrecompileAlgorithm end
+struct _PrecompileIterator end
+
+init(::_PrecompileProblem, ::_PrecompileAlgorithm) = _PrecompileIterator()
+solve!(::_PrecompileIterator) = nothing
+step!(::_PrecompileIterator) = nothing
+
+@compile_workload begin
+    problem = _PrecompileProblem()
+    algorithm = _PrecompileAlgorithm()
+    iter = init(problem, algorithm)
+    solve(problem, algorithm)
+    step!(iter)
+    solve!(iter)
+end
 
 # `solve`, `solve!`, `init`, `step!` are CommonSolve's entire public API — each is
 # documented above and is the canonical interface downstream solvers import and
