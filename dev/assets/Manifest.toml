@@ -34,7 +34,7 @@ version = "0.7.9"
 
 [[deps.CommonSolve]]
 deps = ["PrecompileTools"]
-path = "/home/runner/_work/CommonSolve.jl/CommonSolve.jl"
+path = "/home/runner/work/CommonSolve.jl/CommonSolve.jl"
 uuid = "38540f10-b2f7-11e9-35d8-d573e4eb0ff2"
 version = "0.2.14"
 
